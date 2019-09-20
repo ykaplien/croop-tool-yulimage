@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="./cropper.css">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="editor-container">
+		<div class="upload">
+			<!-- <div class="preview-wrapper"> -->
+			<!-- </div> -->
+			<div class="image-container">
+				<canvas id="main-canvas" style="max-width:100%;"></canvas>
+			</div>
+			<div id="dropzone"></div>
+		    <canvas id="result-canvas"></canvas>
+		</div>
+		<div class="settings">
+			<div class="buttons settings-category">
+			    <h3>Aspect ratio</h3>
+			    <button id="square-button">Square</button>
+			    <button id="landscape-button">Landscape</button>
+			    <button id="portrait-button">Portrait</button>
+			</div>
+			<div class="rotate settings-category">
+			    <h3>Rotate</h3>
+			    <input type="range" id="rotate" min="-180" max="180" step="1">
+			    <br>
+			    <label for="volume"><span id="currentRotateValue">0</span> &deg;</label>
+			</div>
+			<div class="scale settings-category">
+			    <h3>Scale</h3>
+			    <button id="scale-decrease">-</button>
+			    <button id="scale-increase">+</button>
+			</div>
+			<div class="flip settings-category">
+			    <h3>Flip</h3>
+			    <button id="hor-flip">Horizontal flip</button>
+			    <button id="ver-flip">Vertical flip</button>
+			</div>
+			<div class="crop-reset ">
+			    <button id="crop">Crop</button>
+			    <button id="reset">Reset</button>
+			</div>
+			<div class="filters settings-category">
+			    <h3>Filters</h3>
+			    <button id="sepia-button">Sepia</button>
+			    <button id="contrast-button">Contrast</button>
+			    <button id="black-white-button">Black/White</button>
+			    <button id="without-filters-button">Without filters</button>
+			</div>
+		</div>
+	</div>
+<script src="bundle.js"></script>
+</body>
+
+</html>
