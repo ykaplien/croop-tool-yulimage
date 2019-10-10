@@ -5,7 +5,8 @@ export default class CustomCropper extends Cropper{
   constructor(element, options) {
     let defaultOptions = {
       autoCropArea : 1,
-      viewMode : 2
+      viewMode : 2,
+      background: false // TRUE - background with squares; FALSE - black background
     };
 
     const mergedOptions = Object.assign({}, defaultOptions, options);
@@ -51,6 +52,15 @@ export default class CustomCropper extends Cropper{
 
   setPortraitRatio() {
     this.setAspectRatio(1.3333333333333);
+  }
+
+  rotateSelectedArea() {
+    let { width, height } = this.getCropBoxData();
+    this.setAspectRatio(height / width);
+    this.setCropBoxData({
+      width: height,
+      height: width
+    });
   }
 
   resetToDefaultState() {

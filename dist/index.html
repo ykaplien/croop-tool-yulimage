@@ -10,52 +10,56 @@
 </head>
 
 <body>
-	<div class="editor-container">
-		<div class="upload">
-			<!-- <div class="preview-wrapper"> -->
-			<!-- </div> -->
-			<div class="image-container">
-				<canvas id="main-canvas" style="max-width:100%;"></canvas>
-			</div>
-			<div id="dropzone"></div>
-		    <canvas id="result-canvas"></canvas>
+<div class="editor-container">
+	<div class="upload">
+		<!-- <div class="preview-wrapper"> -->
+		<!-- </div> -->
+		<div class="image-container">
+			<canvas id="main-canvas" style="max-width:100%;"></canvas>
 		</div>
-		<div class="settings">
-			<div class="buttons settings-category">
-			    <h3>Aspect ratio</h3>
-			    <button id="square-button">Square</button>
-			    <button id="landscape-button">Landscape</button>
-			    <button id="portrait-button">Portrait</button>
-			</div>
-			<div class="rotate settings-category">
-			    <h3>Rotate</h3>
-			    <input type="range" id="rotate" min="-180" max="180" step="1">
-			    <br>
-			    <label for="volume"><span id="currentRotateValue">0</span> &deg;</label>
-			</div>
-			<div class="scale settings-category">
-			    <h3>Scale</h3>
-			    <button id="scale-decrease">-</button>
-			    <button id="scale-increase">+</button>
-			</div>
-			<div class="flip settings-category">
-			    <h3>Flip</h3>
-			    <button id="hor-flip">Horizontal flip</button>
-			    <button id="ver-flip">Vertical flip</button>
-			</div>
-			<div class="crop-reset ">
-			    <button id="crop">Crop</button>
-			    <button id="reset">Reset</button>
-			</div>
+		<div id="dropzone"></div>
+	    <canvas id="result-canvas"></canvas>
+	</div>
+	<div id="settings" class="settings">
+		<h3 class="heading">Aspect ratio</h3>
+		<div class="buttons settings-category">
+		    <div id="square-button" class="button active">Square 1 x 1</div>
+		    <div id="landscape-button" class="button">Digital Photo 4 x 3</div>
+		    <div id="portrait-button" class="button">Panorama 2 x 1</div>
+		</div>
+		<h3 class="heading">Rotate</h3>
+		<div class="rotate-crop">
+			<button id="rotate-selected-area-button">Rotate crop area</button>
+		</div>
+   	 	<label for="volume"><span id="currentRotateValue">0</span> &deg;</label> 
+		<div class="rotate settings-category">
+		    <input class="rotate-range" type="range" id="rotate" min="-180" max="180" step="1">
+		</div>
+		<h3 class="heading">Scale</h3>
+		<div class="scale settings-category">
+		    <button id="scale-decrease">-</button>
+		    <button id="scale-increase">+</button>
+		</div>
+		<h3 class="heading">Flip</h3>
+		<div class="flip settings-category">
+		    <button id="hor-flip">Horizontal flip</button>
+		    <button id="ver-flip">Vertical flip</button>
+		</div>
+		<div id="filtersWrapper" class="filters-wrapper">
+			<h3 class="heading">Filters</h3>
 			<div class="filters settings-category">
-			    <h3>Filters</h3>
 			    <button id="sepia-button">Sepia</button>
 			    <button id="contrast-button">Contrast</button>
 			    <button id="black-white-button">Black/White</button>
-			    <button id="without-filters-button">Without filters</button>
+		    	<button id="without-filters-button">Without filters</button>
 			</div>
 		</div>
+		<div class="crop-reset ">
+		    <button id="crop">Preview</button>
+		    <button id="reset">Reset</button>
+		</div>
 	</div>
+</div>
 <script src="bundle.js"></script>
 </body>
 

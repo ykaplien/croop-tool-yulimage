@@ -3,6 +3,8 @@ import CustomCropper from "./CustomCropper";
 import fileVerificator from "./fileVerificator";
 
 // ratio buttons
+const filtersWrapper = document.querySelector('#filtersWrapper');
+console.log(filtersWrapper);
 const squareButton = document.querySelector("#square-button");
 const landscapeButton = document.querySelector("#landscape-button");
 const portraitButton = document.querySelector("#portrait-button");
@@ -24,12 +26,15 @@ const sepiaButton = document.querySelector("#sepia-button");
 const contrastButton = document.querySelector("#contrast-button");
 const blackWhiteButton = document.querySelector("#black-white-button");
 const withoutFiltersButton = document.querySelector("#without-filters-button");
+// rotate selected area button
+const rotateSelectedAreaButton = document.querySelector("#rotate-selected-area-button");
 // canvases + context of result canvas
 const canvas = document.querySelector('#main-canvas');
 const resultCanvas = document.querySelector("#result-canvas");
 const context = resultCanvas.getContext('2d');
 // cropped Image
 let croppedImage;
+let imageLoaded = false;
 
 const customCropper = new CustomCropper(canvas);
 
@@ -44,12 +49,13 @@ const myDropzone = new Dropzone(
   }
 );
 
+const myDropzone1 = document.querySelector('#dropzone');
+
 // document.getElementsByClassName("image-container").style.display = "none";
 
 const imgCotainer = document.getElementsByClassName("image-container")[0]; 
 
 myDropzone.on("addedfile", function(file) {
-  // debugger;
   if (fileVerificator(file)) {
     const image = new Image();
     image.src = window.URL.createObjectURL(file);
@@ -57,7 +63,10 @@ myDropzone.on("addedfile", function(file) {
     image.onload = function() {
       customCropper.replace(image.src);
       document.getElementById("dropzone").style.display = "none";
+      document.getElementById("settings").style.visibility = "visible";
+      settings
       imgCotainer.style.visibility= "visible";
+      imageLoaded = true;
     };
   }
 
@@ -66,13 +75,17 @@ myDropzone.on("addedfile", function(file) {
 //CROP
 cropButton.addEventListener("click", async () => {
   croppedImage = await customCropper.selectDefinedZone();
-  resultCanvas.width = croppedImage.naturalWidth;
-  resultCanvas.height = croppedImage.naturalHeight;
-  context.drawImage(croppedImage, 0, 0);
-  resultCanvas.style.visibility= "visible";
-  imgCotainer.style.visibility= "hidden";
-  myDropzone.style.visibility= "hidden";
-
+  if (imageLoaded) {
+    resultCanvas.width = croppedImage.naturalWidth;
+    resultCanvas.height = croppedImage.naturalHeight;
+    console.log(filtersWrapper);
+    context.drawImage(croppedImage, 0, 0);
+    resultCanvas.style.visibility= "visible";
+    imgCotainer.style.visibility= "hidden";
+    myDropzone1.style.visibility= "hidden";
+    filtersWrapper.style.height = 'auto';
+    filtersWrapper.style.visibility = 'visible';
+  }
 });
 
 //FLIP
@@ -103,22 +116,40 @@ scaleDecreaseButton.addEventListener("click", () => {
 // ASPECT RATIO
 squareButton.addEventListener("click", () => {
   customCropper.setSquareRatio();
+  squareButton.classList.add('active');
+  landscapeButton.classList.remove('active');
+  portraitButton.classList.remove('active');
 });
 
 landscapeButton.addEventListener("click", () => {
   customCropper.setPortraitRatio();
+  landscapeButton.classList.add('active');
+  squareButton.classList.remove('active');
+  portraitButton.classList.remove('active');
 });
 
 portraitButton.addEventListener("click", () => {
   customCropper.setLandscapeRatio();
+  portraitButton.classList.add('active');
+  squareButton.classList.remove('active');
+  landscapeButton.classList.remove('active');
+});
+
+// ROTATE SELECTED AREA
+rotateSelectedAreaButton.addEventListener("click", () => {
+  customCropper.rotateSelectedArea();
 });
 
 //RESET
 resetButton.addEventListener("click", () => {
   customCropper.resetToDefaultState();
-  resultCanvas.style.visibility= "hidden";
-  imgCotainer.style.visibility= "visible";
-  myDropzone.style.visibility= "visible";
+  if (imageLoaded) {
+    resultCanvas.style.visibility= "hidden";
+    imgCotainer.style.visibility= "visible";
+    myDropzone1.style.visibility= "visible";
+    filtersWrapper.style.visibility = 'hidden';
+    filtersWrapper.style.height = '0px';
+  }
 });
 
 // FILTERS

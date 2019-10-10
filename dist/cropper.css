@@ -1,78 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Turret+Road&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+#rotate-selected-area-button {
+  padding: 6px;
+  font-size: 18px;
+  background-color: rgba(0,0,0, 0.1);
+  border: none;
+  border-radius: 5px;
+  color: #999;
+}
+
+#rotate-selected-area-button:hover {
+  background-color: rgba(0,0,0, 0.5);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+ }
+
+.rotate-crop {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.cropper-modal {
+    background-color: #282828 !important;
+}
+ 
 .editor-container {
-	padding: 50px;
-	width: 80%;
-	background-color: #282828;
-	color: #FFFFFF;
-	font-family: "Noto Sans", sans-serif;
-	font-size: 15px;
-	display: flex;
-	justify-content: space-around;
+  min-height: 60vh;
+  max-height: 70vh;
+  padding: 4vh;
+  width: 100%;
+  background-color: #282828;
+  color: #FFFFFF;
+  font-family: 'Turret Road', cursive;
+  font-size: 1em;
+  display: flex;
+  justify-content: space-around;
 }
 
 .upload {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	position: relative;
-	width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 50%;
 }
 
 #dropzone {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/editor-png.png?1711);
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/editor-png.png?1711);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .image-container {
-	display: block;
-	width: 100%;
-	visibility: hidden;
+  display: block;
+  width: 100%;
+  visibility: hidden;
 }
 
 .buttons {
-	display: block;
+  display: block;
 }
 
 .preview-wrapper {
-	position: absolute;
-	width: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 #result-canvas {
-	top: 30%;
-	position: absolute;
-	width: inherit;
+  align-self: center;
+  position: absolute;
+  width: 75%;
   height: auto;
   visibility: hidden;
   border-radius: 2px;
 }
 
+.scale.settings-category {
+  justify-content: space-around;
+}
+
+#scale-decrease {
+  border: 1px solid #5B5B5B;
+  border-radius: 50%;
+  color: red;
+}
+
+#scale-increase {
+  border: 1px solid #5B5B5B; 
+  border-radius: 50%;
+  color: red;
+}
+
+.settings-category {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
 .settings-category > button {
-	padding: 6px;
-	font-size: 18px;
-	background-color: rgba(0,0,0, 0.1);
-	border: none;
-	border-radius: 5px;
-	color: #999;
+  padding: 6px;
+  font-size: 18px;
+  background-color: rgba(0,0,0, 0.1);
+  border: none;
+  border-radius: 5px;
+  color: #999;
 }
 
 .settings-category > button:hover {
-	background-color: rgba(0,0,0, 0.5);
-	border: none;
-	border-radius: 5px;
-	color: #fff;
+  background-color: rgba(0,0,0, 0.5);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
 }
 
 button:focus {
-	outline: none;
+  outline: none;
 }
 
 label.rorate {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #crop {
@@ -80,6 +139,7 @@ label.rorate {
 }
 
 .crop-reset {
+  margin-top: 2vh;
   display: flex;
   justify-content: space-around;
 }
@@ -105,110 +165,169 @@ label.rorate {
 }
 
 .scale button {
-  width: 50px;
-  height: 50px;
+  width: 3vh;
+  height: 3vh;
   vertical-align: middle;
 }
 
-.settings-category {
-  border-radius: 10px;
-  margin: 10px 0;
-  padding: 10px;
-}
-
-.settings-category h3 {
+h3.heading {
+  text-align: center;
   color: #f00;
-  font-size: 15px;
-  margin: 0;
+  font-size: 3vh !important;
+  margin: 10px 0 0 0;
+  font-weight: bold;
+  padding-bottom: 0 !important;
 }
 
-input[type=range] {
-  height: 26px;
+/*h3.heading:first-child {
+  margin-top: -2vh;
+}*/
+
+input[type=range].rotate-range {
   -webkit-appearance: none;
-  margin: 10px 0;
   width: 100%;
-  background-color:transparent;
+  margin: 15.15px 0;
 }
-input[type=range]:focus {
+input[type=range].rotate-range:focus {
   outline: none;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type=range].rotate-range::-webkit-slider-runnable-track {
   width: 100%;
-  height: 14px;
+  height: 1.7px;
   cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #50555C;
-  background: #50555C;
-  border-radius: 14px;
-  border: 0px solid #000000;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: rgba(28, 28, 28, 0.51);
+  border-radius: 0px;
+  border: 0px solid #010101;
 }
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px #000000;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 40px;
-  border-radius: 12px;
-  background: #f00;
+input[type=range].rotate-range::-webkit-slider-thumb {
+  box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+  border: 2px solid #1c1c1c;
+  height: 32px;
+  width: 32px;
+  border-radius: 50px;
+  background: #ff0000;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -3px;
+  margin-top: -15.15px;
 }
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #50555C;
+input[type=range].rotate-range:focus::-webkit-slider-runnable-track {
+  background: rgba(89, 89, 89, 0.51);
 }
-input[type=range]::-moz-range-track {
+input[type=range].rotate-range::-moz-range-track {
   width: 100%;
-  height: 14px;
+  height: 1.7px;
   cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #50555C;
-  background: #50555C;
-  border-radius: 14px;
-  border: 0px solid #000000;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: rgba(28, 28, 28, 0.51);
+  border-radius: 0px;
+  border: 0px solid #010101;
 }
-input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 0px #000000;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 40px;
-  border-radius: 12px;
-  background: #f00;
+input[type=range].rotate-range::-moz-range-thumb {
+  box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+  border: 2px solid #1c1c1c;
+  height: 32px;
+  width: 32px;
+  border-radius: 50px;
+  background: #ff0000;
   cursor: pointer;
 }
-input[type=range]::-ms-track {
+input[type=range].rotate-range::-ms-track {
   width: 100%;
-  height: 14px;
+  height: 1.7px;
   cursor: pointer;
-  animate: 0.2s;
   background: transparent;
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-ms-fill-lower {
-  background: #50555C;
-  border: 0px solid #000000;
-  border-radius: 28px;
-  box-shadow: 1px 1px 1px #50555C;
+input[type=range].rotate-range::-ms-fill-lower {
+  background: rgba(0, 0, 0, 0.51);
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
-input[type=range]::-ms-fill-upper {
-  background: #50555C;
-  border: 0px solid #000000;
-  border-radius: 28px;
-  box-shadow: 1px 1px 1px #50555C;
+input[type=range].rotate-range::-ms-fill-upper {
+  background: rgba(28, 28, 28, 0.51);
+  border: 0px solid #010101;
+  border-radius: 0px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
 }
-input[type=range]::-ms-thumb {
-  margin-top: 1px;
-  box-shadow: 0px 0px 0px #000000;
-  border: 0px solid #000000;
-  height: 20px;
-  width: 40px;
-  border-radius: 12px;
-  background: #f00;
+input[type=range].rotate-range::-ms-thumb {
+  box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+  border: 2px solid #1c1c1c;
+  height: 32px;
+  width: 32px;
+  border-radius: 50px;
+  background: #ff0000;
   cursor: pointer;
+  height: 1.7px;
 }
-input[type=range]:focus::-ms-fill-lower {
-  background: #50555C;
+input[type=range].rotate-range:focus::-ms-fill-lower {
+  background: rgba(28, 28, 28, 0.51);
 }
-input[type=range]:focus::-ms-fill-upper {
-  background: #50555C;
+input[type=range].rotate-range:focus::-ms-fill-upper {
+  background: rgba(89, 89, 89, 0.51);
+}
+
+button {
+  font-family: 'Turret Road', cursive;
+}
+
+.button {
+  color: #999;
+  text-align: center;
+  width: 135px;
+  height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: auto auto;
+  background-size: auto auto;
+  opacity: 0.5;
+}
+
+#square-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/square2.png?1989);
+}
+#landscape-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/landscape2.png?1989);
+}
+#portrait-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/portrait2.png?1989);
+}
+
+.button.active {
+  color: white;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+#without-filters-button {
+  color: red;
+}
+
+.filters.settings-category button {
+  border-radius: 0;
+}
+
+.filters-wrapper {
+  visibility: hidden;
+}
+
+.settings > h3 {
+  font-family: 'Turret Road', cursive;
+}
+
+.filters-wrapper > h3 {
+  font-family: 'Turret Road', cursive;
+}
+
+#filtersWrapper {
+  height: 0px;
+}
+
+#settings {
+  visibility: hidden;
 }
