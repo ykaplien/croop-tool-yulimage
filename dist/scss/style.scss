@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css?family=Turret+Road&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+#rotate-selected-area-button {
+  padding: 6px;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 5px;
+  color: #999;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+  }
+}
+
+.rotate-crop {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.cropper-modal {
+  background-color: #282828 !important;
+}
+
+.editor-container {
+  min-height: 60vh;
+  max-height: 70vh;
+  padding: 4vh;
+  width: 100%;
+  background-color: #282828;
+  color: #FFFFFF;
+  font-family: 'Turret Road', cursive;
+  font-size: 0.8vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.upload {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 50%;
+}
+
+#dropzone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/editor-png.png?1711);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.image-container {
+  display: block;
+  width: 100%;
+  visibility: hidden;
+}
+
+.buttons {
+  display: block;
+}
+
+.preview-wrapper {
+  position: absolute;
+  width: 100%;
+}
+
+#result-canvas {
+  align-self: center;
+  position: absolute;
+  width: 75%;
+  height: auto;
+  visibility: hidden;
+  border-radius: 2px;
+}
+
+.scale.settings-category {
+  justify-content: space-around;
+}
+
+#scale-decrease, #scale-increase {
+  border: 1px solid #5B5B5B;
+  border-radius: 50%;
+  color: red;
+}
+
+.settings-category {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  margin: 10px 0;
+
+  > button {
+    padding: 6px;
+    font-size: 1.2vw;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: #999;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+  }
+}
+
+button:focus {
+  outline: none;
+}
+
+label.rorate {
+  box-sizing: border-box;
+}
+
+#crop {
+  color: #f00;
+}
+
+.crop-reset {
+  margin-top: 2vh;
+  display: flex;
+  justify-content: space-around;
+
+  > button {
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 6px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: #999;
+
+    &:hover {
+      width: 40%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.rotate label {
+  display: flex;
+  justify-content: center;
+}
+
+.scale button {
+  width: 3vh;
+  height: 3vh;
+  vertical-align: middle;
+}
+
+h3.heading {
+  text-align: center;
+  color: #f00;
+  font-size: 3vh !important;
+  margin: 10px 0 0 0;
+  font-weight: bold;
+  padding-bottom: 0 !important;
+}
+
+/*h3.heading:first-child {
+  margin-top: -2vh;
+}*/
+
+input[type=range].rotate-range {
+  -webkit-appearance: none;
+  width: 45vw;
+  margin: 15.15px 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1.7px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: rgba(28, 28, 28, 0.51);
+    border-radius: 0px;
+    border: 0px solid #010101;
+  }
+
+  &::-webkit-slider-thumb {
+    box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+    border: 2px solid #1c1c1c;
+    height: 1.5vw;
+    width: 1.5vw;
+    border-radius: 50px;
+    background: #ff0000;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -0.75vw;
+  }
+
+  &:focus::-webkit-slider-runnable-track {
+    background: rgba(89, 89, 89, 0.51);
+  }
+
+  &::-moz-range-track {
+    width: 100%;
+    height: 1.7px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: rgba(28, 28, 28, 0.51);
+    border-radius: 0px;
+    border: 0px solid #010101;
+  }
+
+  &::-moz-range-thumb {
+    box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+    border: 2px solid #1c1c1c;
+    height: 32px;
+    width: 32px;
+    border-radius: 50px;
+    background: #ff0000;
+    cursor: pointer;
+  }
+
+  &::-ms-track {
+    width: 100%;
+    height: 1.7px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+
+  &::-ms-fill-lower {
+    background: rgba(0, 0, 0, 0.51);
+    border: 0px solid #010101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+
+  &::-ms-fill-upper {
+    background: rgba(28, 28, 28, 0.51);
+    border: 0px solid #010101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+
+  &::-ms-thumb {
+    box-shadow: 0px 0px 1.9px #ffffff, 0px 0px 0px #ffffff;
+    border: 2px solid #1c1c1c;
+    height: 32px;
+    width: 32px;
+    border-radius: 50px;
+    background: #ff0000;
+    cursor: pointer;
+    height: 1.7px;
+  }
+
+  &:focus {
+    &::-ms-fill-lower {
+      background: rgba(28, 28, 28, 0.51);
+    }
+
+    &::-ms-fill-upper {
+      background: rgba(89, 89, 89, 0.51);
+    }
+  }
+}
+
+button {
+  font-family: 'Turret Road', cursive;
+}
+
+.button {
+  color: #999;
+  text-align: center;
+  width: 135px;
+  height: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: auto auto;
+  background-size: auto auto;
+  opacity: 0.5;
+}
+
+#square-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/square2.png?1989);
+  cursor: pointer;
+}
+
+#landscape-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/landscape2.png?1989);
+  cursor: pointer;
+}
+
+#portrait-button {
+  margin: 0 25px;
+  background-image: url(https://cdn.shopify.com/s/files/1/0064/6958/2919/files/portrait2.png?1989);
+  cursor: pointer;
+}
+
+.button.active {
+  color: white;
+  font-weight: bolder;
+  opacity: 1;
+}
+
+#without-filters-button {
+  color: red;
+}
+
+.filters.settings-category button {
+  border-radius: 0;
+}
+
+.filters-wrapper {
+  visibility: hidden;
+}
+
+.settings > h3, .filters-wrapper > h3 {
+  font-family: 'Turret Road', cursive;
+}
+
+#filtersWrapper {
+  height: 0px;
+}
+
+#settings {
+  visibility: hidden;
+}
+
+.addToCart {
+    display: flex;
+    visibility: hidden;
+
+    > #addToCart {
+        background-color: red;
+        border: none;
+        align-self: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.3rem;
+        border-radius: 5px;
+        padding: 10px;
+        margin-left: 30px;
+    }
+
+    .type-variants {
+        
+        > label {
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        > input {
+
+        }
+    }
+}
+

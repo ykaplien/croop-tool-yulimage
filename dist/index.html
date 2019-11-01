@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="./cropper.css">
+	<link rel="stylesheet" href="./css/cropper.css">
 	<title>Document</title>
 </head>
 
@@ -58,8 +58,43 @@
 		    <button id="crop">Preview</button>
 		    <button id="reset">Reset</button>
 		</div>
+		<div class="addToCart">
+			<div class="priceVariants-wrapper">
+				<div class="addToCart--square type-variants">
+    				<label for="squareChoice1">30cm x 30cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$97</span></label>
+					<input class="price" type="radio" id="squareChoice1" name="square" value="square1"><br>
+    				<label for="squareChoice2">40cm x 40cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$115</span></label>
+					<input class="price" type="radio" id="squareChoice2" name="square" value="square2"><br>
+    				<label for="squareChoice3">60cm x 60cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$190</span></label>
+					<input class="price" type="radio" id="squareChoice3" name="square" value="square3"><br>
+				</div>
+				<div class="addToCart--digital type-variants">
+					<label for="digitalChoice1">28cm X 21cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$99</span></label>
+					<input class="price" type="radio" id="digitalChoice1" name="digital" value="digital1"><br>
+    				<label for="digitalChoice2">40cm X 30cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$115</span></label>
+					<input class="price" type="radio" id="digitalChoice2" name="digital" value="digital2"><br>
+    				<label for="digitalChoice3">60cm X 45cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$155</span></label>
+					<input class="price" type="radio" id="digitalChoice3" name="digital" value="digital3"><br>
+    				<label for="digitalChoice4">80cm X 60cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$235</span></label>
+					<input class="price" type="radio" id="digitalChoice4" name="digital" value="digital4"><br>
+				</div>
+				<div class="addToCart--panorama type-variants">
+					<label for="panoramaChoice1">40cm X 20cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$105</span></label>
+					<input class="price" type="radio" id="panoramaChoice1" name="panorama" value="panorama1"><br>
+    				<label for="panoramaChoice2">60cm X 30cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$125</span></label>
+					<input class="price" type="radio" id="panoramaChoice2" name="panorama" value="panorama2"><br>
+    				<label for="panoramaChoice3">90cm X 45cm <span style="color: red; font-size: 1.2rem; vertical-align: center;">$210</span></label>
+					<input class="price" type="radio" id="panoramaChoice3" name="panorama" value="panorama3"><br>
+				</div>
+			</div>
+			<button id="addToCart" >Add to Cart</button>
+		</div>
 	</div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 <script src="bundle.js"></script>
 </body>
 

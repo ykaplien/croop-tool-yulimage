@@ -2,6 +2,8 @@ import Dropzone from "dropzone";
 import CustomCropper from "./CustomCropper";
 import fileVerificator from "./fileVerificator";
 
+let selectedRatio = 'square';
+
 // ratio buttons
 const filtersWrapper = document.querySelector('#filtersWrapper');
 console.log(filtersWrapper);
@@ -32,6 +34,8 @@ const rotateSelectedAreaButton = document.querySelector("#rotate-selected-area-b
 const canvas = document.querySelector('#main-canvas');
 const resultCanvas = document.querySelector("#result-canvas");
 const context = resultCanvas.getContext('2d');
+const addToCartClass = document.querySelector('.addToCart');
+const addToCart = document.querySelector('#addToCart');
 // cropped Image
 let croppedImage;
 let imageLoaded = false;
@@ -78,13 +82,15 @@ cropButton.addEventListener("click", async () => {
   if (imageLoaded) {
     resultCanvas.width = croppedImage.naturalWidth;
     resultCanvas.height = croppedImage.naturalHeight;
-    console.log(filtersWrapper);
+    // console.log(filtersWrapper);
     context.drawImage(croppedImage, 0, 0);
     resultCanvas.style.visibility= "visible";
     imgCotainer.style.visibility= "hidden";
     myDropzone1.style.visibility= "hidden";
     filtersWrapper.style.height = 'auto';
     filtersWrapper.style.visibility = 'visible';
+    addToCartClass.style.visibility = 'visible';
+    // console.log(selectedRatio);
   }
 });
 
@@ -115,6 +121,7 @@ scaleDecreaseButton.addEventListener("click", () => {
 
 // ASPECT RATIO
 squareButton.addEventListener("click", () => {
+  selectedRatio = 'square';
   customCropper.setSquareRatio();
   squareButton.classList.add('active');
   landscapeButton.classList.remove('active');
@@ -122,6 +129,7 @@ squareButton.addEventListener("click", () => {
 });
 
 landscapeButton.addEventListener("click", () => {
+  selectedRatio = 'digital';
   customCropper.setPortraitRatio();
   landscapeButton.classList.add('active');
   squareButton.classList.remove('active');
@@ -129,6 +137,7 @@ landscapeButton.addEventListener("click", () => {
 });
 
 portraitButton.addEventListener("click", () => {
+  selectedRatio = 'panorama';
   customCropper.setLandscapeRatio();
   portraitButton.classList.add('active');
   squareButton.classList.remove('active');
@@ -149,6 +158,7 @@ resetButton.addEventListener("click", () => {
     myDropzone1.style.visibility= "visible";
     filtersWrapper.style.visibility = 'hidden';
     filtersWrapper.style.height = '0px';
+    addToCartClass.style.visibility = 'hidden';
   }
 });
 
@@ -176,3 +186,59 @@ withoutFiltersButton.addEventListener("click", () => {
   context.filter = "none";
   context.drawImage(croppedImage, 0, 0);
 });
+
+addToCart.addEventListener("click", () => {
+  let variants = document.querySelectorAll(`.addToCart--${selectedRatio} > .price`);
+  console.log(variants);
+  let resPrice = 0;
+  for (let price of variants) {
+    if (price.checked) {
+      resPrice = price.value;
+      console.log('Price' ,resPrice);
+    }
+  }
+
+  const appUri = 'https://api.yulimage.com';
+
+
+    resultCanvas.toBlob(function(blob){
+
+      let fd = new FormData();
+      fd.append( 'picture', blob );
+      fd.append( 'price', resPrice );
+
+      $.ajax({
+        type: 'POST',
+        url: `${appUri}/api/create-product`,
+        data: fd,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success(res) {
+          jQuery.post('/cart/add.js', {
+              form_type: 'product',
+              utf8: '%E2%9C%93',
+              id: Number(res),
+              quantity: 1,
+          },function () {
+            window.open('/cart');
+          });
+          console.log(res);
+        },
+      });
+    }, 'image/jpeg', 1);
+
+    function b64toBlob(dataURI) {
+
+      var byteString = atob(dataURI.split(',')[1]);
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
+
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      return new Blob([ab], { type: 'image/jpeg' });
+    }
+});
+
+// document.getElementsByClassName('addToCart--square')[0].remove() для удаления ноды
