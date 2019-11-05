@@ -77,6 +77,39 @@ myDropzone.on("addedfile", function(file) {
 })
 
 //CROP
+
+function uncheckAll() {
+  let prices = document.querySelectorAll('.price');
+  prices.forEach(function(el) {
+    el.checked = false;
+  });
+}
+
+function whatToDisplay (selected) {
+  let ratios = [
+    {
+      name: 'square',
+      class: 'addToCart--square'
+    },
+    {
+      name: 'digital',
+      class: 'addToCart--digital'
+    },
+    {
+      name: 'panorama',
+      class: 'addToCart--panorama'
+    }
+  ];
+
+  ratios.forEach(function(ratio) {
+    if(ratio.name != selected) {
+      document.getElementsByClassName(ratio.class)[0].style.display = 'none';
+    } else {
+      document.getElementsByClassName(ratio.class)[0].style.display = 'block';
+    }
+  })
+}
+
 cropButton.addEventListener("click", async () => {
   croppedImage = await customCropper.selectDefinedZone();
   if (imageLoaded) {
@@ -90,6 +123,8 @@ cropButton.addEventListener("click", async () => {
     filtersWrapper.style.height = 'auto';
     filtersWrapper.style.visibility = 'visible';
     addToCartClass.style.visibility = 'visible';
+    uncheckAll();
+    whatToDisplay(selectedRatio);
     // console.log(selectedRatio);
   }
 });
@@ -159,6 +194,10 @@ resetButton.addEventListener("click", () => {
     filtersWrapper.style.visibility = 'hidden';
     filtersWrapper.style.height = '0px';
     addToCartClass.style.visibility = 'hidden';
+    let prices = document.querySelectorAll('.type-variants');
+    prices.forEach(function(el){
+      el.style.display = 'none';
+    })
   }
 });
 
@@ -215,13 +254,14 @@ addToCart.addEventListener("click", () => {
         contentType: false,
         processData: false,
         success(res) {
-          jQuery.post('/cart/add.js', {
+          $.post('/cart/add.js', {
               form_type: 'product',
               utf8: '%E2%9C%93',
               id: Number(res),
               quantity: 1,
-          },function () {
-            window.open('/cart');
+          }, function () {
+            console.log('Added');
+            window.location.replace('/cart');
           });
           console.log(res);
         },

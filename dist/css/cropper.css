@@ -32,7 +32,7 @@
 
 .editor-container {
   min-height: 60vh;
-  max-height: 70vh;
+  max-height: 124vh;
   padding: 4vh;
   width: 100%;
   background-color: #282828;
@@ -301,7 +301,10 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  visibility: hidden; }
+  visibility: hidden;
+  justify-content: center;
+  padding-top: 10px;
+   }
   .addToCart > #addToCart {
     background-color: red;
     border: none;
@@ -317,3 +320,7 @@ button {
   .addToCart .type-variants > label {
     margin-top: 10px;
     font-size: 1rem; }
+
+.type-variants {
+  display: none;
+}
