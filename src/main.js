@@ -254,17 +254,24 @@ addToCart.addEventListener("click", () => {
         contentType: false,
         processData: false,
         success(res) {
-          $.post('/cart/add.js', {
-              form_type: 'product',
-              utf8: '%E2%9C%93',
-              id: Number(res),
-              quantity: 1,
-          }, function () {
-            console.log('Added');
-            window.location.replace('/cart');
+            console.log('OK1');
+            $.ajax({
+                type: "POST",
+                url: '/cart/add.js',  
+                data: {
+                    form_type: 'product',
+                    utf8: '%E2%9C%93',
+                    id: Number(res),
+                    quantity: 1,
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(res) {
+                  console.log('OK2')
+                  window.location.replace('/cart');    
+                }
           });
-          console.log(res);
-        },
+        }
       });
     }, 'image/jpeg', 1);
 
