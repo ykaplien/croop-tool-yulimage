@@ -288,4 +288,11 @@ addToCart.addEventListener("click", () => {
     }
 });
 
+function insertloader () {
+  document.getElementById('loaderYul').style.display = 'flex';
+  document.querySelector('body').style.overflow = 'hidden';
+}
+
+document.getElementById('addToCart').addEventListener('click', insertloader);
+
 // document.getElementsByClassName('addToCart--square')[0].remove() для удаления ноды
